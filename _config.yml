@@ -6,12 +6,11 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Logical Decision. 
+title: The Evolution Pit - Logical Decision. 
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Never miss a change in the Heroes of the Storm meta. Read in depth analysis of
+  heroes, strategies, maps, and tournament matches.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.evolutionpit.com" # the base hostname & protocol for your site
 twitter_username: evopit
