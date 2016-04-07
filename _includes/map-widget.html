@@ -1,0 +1,27 @@
+<section class="mini-map" ng-controller="MiniMap">
+  <h2>Mini-map</h2>
+  <table>
+    <colgroup>
+      <col>
+      <col width="70" class="stat">
+      <col width="70" class="stat">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><!-- hero name --></th>
+        <th>Game Length</th>
+        <th>Best Hero</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="map in maps">
+        <td><div ng-bind="map.name">Battlefield of Eternity</div></td>
+        <td class="stat"><div ng-bind="map.average_length">20:34</div></td>
+        <td class="stat"><div ng-bind="map.heroes[0].name">Sgt. Hammer</div></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="more-link">
+    <a href="/maps">See Full Map Statistics →</a>
+  </div>
+</section>

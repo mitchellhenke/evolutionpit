@@ -1,0 +1,47 @@
+<section class="the-meta" ng-controller="TheMeta">
+  <h2>The Meta</h2>
+  <table>
+    <colgroup>
+      <col>
+      <col width="70" class="stat">
+      <col width="70" class="stat">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><!-- hero name --></th>
+        <th>Win Rate</th>
+        <th>Meta Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div ng-bind="heroes[0].name">--</div></td>
+        <td class="stat"><div ng-bind="heroes[0].win_rate | percent">--</div></td>
+        <td class="stat"><div ng-bind="heroes[0].score | round">--</div></td>
+      </tr>
+      <tr>
+        <td><div ng-bind="heroes[1].name">--</div></td>
+        <td class="stat"><div ng-bind="heroes[1].win_rate | percent">--</div></td>
+        <td class="stat"><div ng-bind="heroes[1].score | round">--</div></td>
+      </tr>
+      <tr>
+        <td><div ng-bind="heroes[2].name">--</div></td>
+        <td class="stat"><div ng-bind="heroes[2].win_rate | percent">--</div></td>
+        <td class="stat"><div ng-bind="heroes[2].score | round">--</div></td>
+      </tr>
+      <tr>
+        <td><div ng-bind="heroes[3].name">--</div></td>
+        <td class="stat"><div ng-bind="heroes[3].win_rate | percent">--</div></td>
+        <td class="stat"><div ng-bind="heroes[3].score | round">--</div></td>
+      </tr>
+      <tr>
+        <td><div ng-bind="heroes[4].name">--</div></td>
+        <td class="stat"><div ng-bind="heroes[4].win_rate | percent">--</div></td>
+        <td class="stat"><div ng-bind="heroes[4].score | round">--</div></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="more-link">
+    <a href="/heroes">See Full Meta Analysis →</a>
+  </div>
+</section>

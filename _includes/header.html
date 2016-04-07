@@ -1,0 +1,21 @@
+<header class="site-header">
+  <h1><a href="{{site.baseurl}}/">The Evolution Pit</a></h1>
+  <div class="league-selector">
+    <select>
+      <option>Tournaments</option>
+      <option>Hero League</option>
+      <option>Team League</option>
+      <option>Quick Match</option>
+    </select>
+  </div>
+</header>
+<nav class="site-nav">
+  <ul>
+    {% assign sorted_pages = (site.pages | sort: 'order') %}
+    {% for my_page in sorted_pages %}
+    {% if my_page.title %}
+    <li><a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

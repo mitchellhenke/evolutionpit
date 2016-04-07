@@ -1,0 +1,39 @@
+---
+layout: home
+---
+<section class="left">
+
+  {% for post in site.posts %}
+    {% if post.featured %}
+      <article class="featured">
+        <img src="http://cdn.pcgamesn.com/sites/default/files/xul%20heroes%20of%20the%20storm.jpg" />
+        <h2><a href="{{post.url}}">{{ post.title }}</a></h2>
+      </article>
+    {% endif %}
+  {% endfor %}
+
+  {% for post in site.posts %}
+    {% if post.featured == false %}
+      <article>
+        <div class="image-container">
+            <img src="{{ post.smallimage }}" />
+        </div>
+        <div class="headline">
+          <h2><a href="{{post.url}}">{{ post.title }}</a></h2>
+          <div class="date">{{ post.date | date: '%B %d, %Y' }}</div>
+          <div class="author">{{ post.author }}</div>
+        </div>
+      </article>
+    {% endif %}
+  {% endfor %}
+
+</section>
+<section class="right">
+  {% include meta-widget.html %}
+  <div class="seperator"></div>
+  {% include map-widget.html %}
+  <div class="seperator"></div>
+  {% include esports.html %}
+  <div class="seperator"></div>
+  {% include newsletter.html %}
+</section>
