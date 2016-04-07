@@ -42,6 +42,10 @@ angular.module("evolutionpit", ["data"])
 })
 
 
+.controller("Header", function($rootScope, $scope) {
+  $rootScope.league = "Quick Match";
+})
+
 .controller("TheMeta", function($scope, Heroes) {
   $scope.heroes = [];
 
@@ -65,12 +69,22 @@ angular.module("evolutionpit", ["data"])
 })
 .filter("percent", function() {
   return function(input) {
-    return parseFloat(input).toFixed(0) + "%"
+    var parsed = parseFloat(input);
+    if(parsed) {
+      return parseFloat(input).toFixed(0) + "%"
+    } else {
+      return input;
+    }
   }
 })
 .filter("round", function() {
   return function(input) {
-    return parseFloat(input).toFixed(0)
+    var parsed = parseFloat(input);
+    if(parsed) {
+      return parseFloat(input).toFixed(0)
+    } else {
+      return input;
+    }
   }
 })
 

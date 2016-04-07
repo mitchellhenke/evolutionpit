@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="map in maps">
+      <tr ng-repeat="map in maps | orderBy:'average_length'">
         <td><div ng-bind="map.name">Battlefield of Eternity</div></td>
         <td class="stat"><div ng-bind="map.average_length">20:34</div></td>
         <td class="stat"><div ng-bind="map.heroes[0].name">Sgt. Hammer</div></td>
