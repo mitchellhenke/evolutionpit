@@ -1,6 +1,7 @@
 ---
 layout: page
-title: eSports
+title: The Evolution Pit - eSports
+nav: eSports
 permalink: /esports/
 order: 3
 ---
