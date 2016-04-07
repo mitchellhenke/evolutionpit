@@ -1,0 +1,246 @@
+.heroes {
+  flex-direction: column;
+}
+
+.heroes table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.heroes table th {
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #BBB;
+  vertical-align: bottom;
+}
+
+.heroes table td.stat {
+  text-align: center;
+}
+
+.heroes tr.hovered td,
+.heroes tr:hover td {
+  font-weight: bold;
+  background-color: #DDD;
+  cursor: pointer;
+}
+.heroes tr:active td {
+    background-color: #CCC;
+}
+.heroes tr a {
+    color: #333;
+    text-decoration: none;
+}
+
+
+.heroes tr td {
+  padding: 5px;
+}
+.heroes tbody tr:nth-child(odd) {
+  background-color: #EEE;
+}
+
+.heroes .hero-graph {
+  text-align: justify;
+}
+.heroes .hero-image {
+  display: inline-block;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.heroes .hero-image img {
+  width: 35px;
+}
+.heroes .chart-legend,
+.heroes .chart-tooltip {
+  display: none;
+}
+
+.hero-graph {
+  height: 400px;
+  background-color: #F9F9F9;
+  margin-bottom: 30px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+  stroke-width: 2px;
+}
+.axis .tick text {
+  font-size: 12px;
+}
+
+.line {
+  fill: none!important;
+  stroke: #333;
+  stroke-width: 1.3px;
+  opacity: 0.8;
+  pointer-events:all;
+}
+.line.hover {
+  stroke-width: 4px;
+  stroke: transparent;
+  cursor: pointer;
+}
+.line.active {
+  stroke-width: 3px;
+}
+.line.boring {
+  opacity: 0.15;
+}
+.line.boring.active {
+  opacity: 0.6;
+  stroke-width: 2px;
+}
+.line path {
+  fill: none;
+}
+
+.line.popularity,
+.line.win-rate {
+    stroke-width: 2px;
+    stroke: #6032A0;
+}
+.line.popularity:hover,
+.line.win-rate:hover {
+    stroke-width: 4px;
+}
+
+
+.circle {
+  /*opacity: 0.4;*/
+}
+.circle:hover {
+  opacity: 1;
+  stroke-width: 5px;
+  cursor: pointer;
+}
+.line:hover {
+  cursor: pointer;
+  stroke-width: 2px;
+  opacity: 1;
+}
+.xul { stroke: #60AF95; fill: #60AF95; }
+.rehgar { stroke: #80B330; fill: #80B330;; }
+.the-lost-vikings { stroke: #186DF3; fill: #186DF3;; }
+.diablo { stroke: #E84A4B; fill: #E84A4B;; }
+.johanna { stroke: #CEAC00; fill: #CEAC00;; }
+.thrall { stroke: #6E7A99; fill: #6E7A99;; }
+.chen { stroke: #15181E; fill: #15181E;; }
+.valla { stroke: #951100; fill: #951100;; }
+.sgt-hammer { stroke: #D5385D; fill: #D5385D;; }
+.li-ming { stroke: #712CD8; fill: #712CD8;; }
+.raynor { stroke: #6182C3; fill: #6182C3;; }
+.nazeebo { stroke: #794293; fill: #794293;; }
+.tyrande { stroke: #72DBF0; fill: #72DBF0;; }
+.zagara { stroke: #763615; fill: #763615;; }
+.lt-morales { stroke: #EAE8EB; fill: #EAE8EB;; }
+.greymane { stroke: #2F251A; fill: #2F251A;; }
+.leoric { stroke: #A39F95; fill: #A39F95;; }
+.the-butcher { stroke: #8F4140; fill: #8F4140;; }
+.murky { stroke: #178AA8; fill: #178AA8;; }
+.etc { stroke: #A47852; fill: #A47852;; }
+.falstad { stroke: #FF2600; fill: #FF2600;; }
+.li-li { stroke: #FF698A; fill: #FF698A;; }
+.sonya { stroke: #805135; fill: #805135;; }
+.brightwing { stroke: #6AD2A7; fill: #6AD2A7;; }
+.malfurion { stroke: #287F5D; fill: #287F5D;; }
+.lunara { stroke: #668837; fill: #668837;; }
+.stitches { stroke: #68859E; fill: #68859E;; }
+.muradin { stroke: #C38D4C; fill: #C38D4C;; }
+.azmodan { stroke: #D7944C; fill: #D7944C;; }
+.gazlowe { stroke: #A4ED00; fill: #A4ED00;; }
+.jaina { stroke: #925697; fill: #925697;; }
+.anubarak { stroke: #0BAFEF; fill: #0BAFEF;; }
+.kharazim { stroke: #FDE2CB; fill: #FDE2CB;; }
+.artanis { stroke: #DF965A; fill: #DF965A;; }
+.rexxar { stroke: #B87237; fill: #B87237;; }
+.zeratul { stroke: #4D5E91; fill: #4D5E91;; }
+.kaelthas { stroke: #C21A17; fill: #C21A17;; }
+.kerrigan { stroke: #864E6C; fill: #864E6C;; }
+.gall { stroke: #6420A5; fill: #6420A5;; }
+.tyrael { stroke: #FFD26D; fill: #FFD26D;; }
+.uther { stroke: #C8873E; fill: #C8873E;; }
+.illidan { stroke: #4F8743; fill: #4F8743;; }
+.tychus { stroke: #2A48A9; fill: #2A48A9;; }
+.tassadar { stroke: #13E9F2; fill: #13E9F2;; }
+.sylvanas { stroke: #70A4DD; fill: #70A4DD;; }
+.cho { stroke: #FFA757; fill: #FFA757;; }
+.nova { stroke: #7EA2B5; fill: #7EA2B5;; }
+.abathur { stroke: #573C7A; fill: #573C7A;; }
+
+.graph-selector .active {
+    color: #333;
+}
+.graph-selector a {
+    color: #DDD;
+    text-decoration: none;
+    padding-left: 6px;
+    font-size: 14px;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.hero.container {
+    flex-direction: column;
+}
+
+.hero .build .talents {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -5px;
+}
+
+.hero .build .talent {
+    flex: 1;
+    padding: 10px;
+}
+.hero .build .talent:first-child {
+    padding-left: 0px;
+}
+.hero .build .talent:last-child {
+    padding-right: 0px;
+}
+.hero .build .talent img {
+    width: 100%;
+    -webkit-filter: grayscale(40%);
+}
+.hero .build .stats-inner {
+    text-align: center;
+    color: #BBB;
+    background-color: #E5E5E5;
+    padding: 5px;
+    flex: 1 1 auto;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.stats-inner hr {
+    border: 1px solid #BBB;
+    border-bottom: none;
+    width: 70%;
+}
+.stats-inner .win-rate {
+    font-size: 18px;
+}
+.hero .build .stats {
+    padding: 10px;
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+}
+.label {
+    font-size: 10px;
+    position: relative;
+    fill: #BBB;
+    text-transform: uppercase;
+}
+
+.patch-label {
+    font-size: 10px;
+    transform: translateX(-10px);
+}
