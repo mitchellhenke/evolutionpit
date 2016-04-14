@@ -39,8 +39,16 @@ angular.module("data", [])
       return response.data;
     })
   }
-  this.score_for = function(hero) {
-    return (hero.win_rate * hero.popularity) / 100;
+  this.score_for = function(hero, context) {
+    var maxWinRate = _.max(_.pluck(context, "win_rate"));
+    var minWinRate = _.min(_.pluck(context, "win_rate"));
+    var winRateRatio = minWinRate / maxWinRate;
+
+    var maxPopularity = _.max(_.pluck(context, "popularity"));
+    var minPopularity = _.min(_.pluck(context, "popularity"));
+    var popRatio = minPopularity/maxPopularity;
+
+    return (1-((maxPopularity - hero.popularity) / (maxPopularity - minPopularity))) * (1-((maxWinRate - hero.win_rate) / (maxWinRate - minWinRate))) * 100 + 1
   }
   this.fetch = function(path) {
     return $http.get("http://hotslogs.s3-website-us-east-1.amazonaws.com" + path).then(function(response) {
@@ -95,7 +103,7 @@ angular.module("evolutionpit", ["data"])
 
   Heroes.all().then(function(heroes) {
     $scope.heroes = _.sortBy(_.map(heroes, function(hero) {
-      hero.score = Heroes.score_for(hero); 
+      hero.score = Heroes.score_for(hero, heroes); 
       return hero;
     }), "score").reverse().slice(0,5);
   });
@@ -127,7 +135,7 @@ angular.module("evolutionpit", ["data"])
   
   Heroes.all().then(function(heroes) {
     $scope.heroes = _.map(heroes,function(hero) {
-      hero.score = ((hero.win_rate) * hero.popularity) / 100
+      hero.score = Heroes.score_for(hero, heroes); 
       return hero;
     });
 
@@ -140,7 +148,7 @@ angular.module("evolutionpit", ["data"])
           return {
             name: datum.name,
             date: datum.date,
-            score: (datum.win_rate * datum.popularity) / 100,
+            score: Heroes.score_for(datum, $scope.heroes),
             win_rate: datum.win_rate,
             popularity: datum.popularity,
             games_played: datum.games_played
@@ -223,14 +231,14 @@ angular.module("evolutionpit", ["data"])
           if($scope.graphing == "win_rate") {
             svg.append("line")
                 .attr("x1", x(xMin))
-                .attr("x2", x(xMax))
+                .attr("x2", x(xMax) + margin.right)
                 .attr("y1", y(50))
                 .attr("y2", y(50))
                 .style("stroke-width", (y(45) - y(55)))
                 .style("stroke", "#F3F3F3")
             svg.append("line")
                 .attr("x1", x(xMin))
-                .attr("x2", x(xMax))
+                .attr("x2", x(xMax) + margin.right)
                 .attr("y1", y(50))
                 .attr("y2", y(50))
                 .style("stroke-width", (y(48) - y(52)))
