@@ -157,9 +157,20 @@ angular.module("evolutionpit", ["data"])
         window.location.href = "/hero/" + slugify(hero.name);
     }
 
+    $scope.toggleFocused = function(hero, event) {
+      hero.focused = !!!hero.focused;
+      renderGraph();
+    }
+
+    $scope.dont = function(hero) {
+      $scope.toggleFocused(hero);
+    }
+
     function renderGraph() {
         $q.all(promises).then(function(a) {
           $scope.loading = false;
+
+          var anyFocused = _.where($scope.heroes, {'focused': true}).length > 0;
 
           var margin = {top: 20, right: 40, bottom: 40, left: 50};
           var width = 920 - margin.left - margin.right;
@@ -257,11 +268,16 @@ angular.module("evolutionpit", ["data"])
           
 
           _.each(a, function(hero) {
+            if(anyFocused && !_.findWhere($scope.heroes, {name: hero[0].name}).focused) return;
             var min = _.min(hero, function(h) { return h[$scope.graphing] });
             var max = _.max(hero, function(h) { return h[$scope.graphing] });
             var isInteresting = !(max[$scope.graphing] - min[$scope.graphing] < 1);
             if($scope.graphing === "win_rate") {
                 isInteresting = !(max[$scope.graphing] - min[$scope.graphing] < 2.75);
+                
+            }
+            if(anyFocused) {
+              isInteresting = true;
             }
             _.each(hero, function(element, index) {
               if(index > 0 && index) {
