@@ -31,6 +31,7 @@ order: 1
     <col width="70" class="stat"></col>
     <thead>
       <tr>
+        <th></th>
         <th><!-- Hero Name --></th>
         <th>Win Rate</th>
         <th>Popularity</th>
@@ -41,7 +42,7 @@ order: 1
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="hero in heroes | orderBy:'-score' " ng-class="{hovered: activeHero.name === hero.name}" ng-click="toggleFocused(hero, $event)">
+      <tr ng-repeat="hero in heroes | orderBy:graphing:true " ng-class="{hovered: activeHero.name === hero.name}" ng-click="toggleFocused(hero, $event)">
         <td><input type="checkbox" ng-model="hero.focused" ng-click="dont(hero)"></td>
         <td><a ng-href="/hero/{{ hero.name }}" ng-bind='hero.name'></a></td>
         <td class="stat" ng-bind='hero.win_rate | percent'></td>
