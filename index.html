@@ -6,8 +6,9 @@ layout: home
   {% for post in site.posts %}
     {% if post.featured %}
       <article class="featured">
-        <img src="http://cdn.pcgamesn.com/sites/default/files/xul%20heroes%20of%20the%20storm.jpg" />
+        <img src="{{post.image}}" />
         <h2><a href="{{post.url}}">{{ post.title }}</a></h2>
+        <div class="date">{{ post.date | date: '%B %d, %Y' }}</div>
       </article>
     {% endif %}
   {% endfor %}
@@ -15,8 +16,7 @@ layout: home
   {% for post in site.posts %}
     {% if post.featured == false %}
       <article>
-        <div class="image-container">
-            <img src="{{ post.smallimage }}" />
+        <div class="image-container" style="background-image: url({{post.smallimage}});">
         </div>
         <div class="headline">
           <h2><a href="{{post.url}}">{{ post.title }}</a></h2>
@@ -32,8 +32,6 @@ layout: home
   {% include meta-widget.html %}
   <div class="seperator"></div>
   {% include map-widget.html %}
-  <div class="seperator"></div>
-  {% include esports.html %}
   <div class="seperator"></div>
   {% include newsletter.html %}
 </section>

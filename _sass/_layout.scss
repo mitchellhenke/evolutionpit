@@ -113,9 +113,13 @@ article.featured h2 {
   flex-direction: column;
 }
 
-.left article .image-container img  {
+.left article .image-container  {
   height: 140px;
   width: 200px;
+  background-color: #F5F5F5;
+  flex-basis: 200px;
+  background-size: cover;
+  background-position: center center;
 }
 .left article .headline {
   margin-left: 16px;
@@ -126,6 +130,8 @@ article.featured h2 {
 .left article .headline {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 10px;
 }
 .left article:last-child {
   border-bottom: 0px;
