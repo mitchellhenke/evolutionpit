@@ -51,7 +51,11 @@ angular.module("data", [])
     return (1-((maxPopularity - hero.popularity) / (maxPopularity - minPopularity))) * (1-((maxWinRate - hero.win_rate) / (maxWinRate - minWinRate))) * 100 + 1
   }
   this.fetch = function(path) {
-    return $http.get("http://hotslogs.s3-website-us-east-1.amazonaws.com" + path).then(function(response) {
+    return $http({
+      url: "http://hotslogs.s3-website-us-east-1.amazonaws.com" + path,
+      method: "GET",
+      withCredentials: true
+    }).then(function(response) {
         return response.data;
     })
   }
@@ -91,7 +95,7 @@ angular.module("evolutionpit", ["data"])
 .controller("TheMeta", function($scope, Heroes) {
   $scope.heroes = [];
 
-  // Fill with junk data while 
+  // Fill with junk data while
   // actual data loads
   for(var i = 0; i<5; ++i) {
     $scope.heroes.push({
@@ -103,7 +107,7 @@ angular.module("evolutionpit", ["data"])
 
   Heroes.all().then(function(heroes) {
     $scope.heroes = _.sortBy(_.map(heroes, function(hero) {
-      hero.score = Heroes.score_for(hero, heroes); 
+      hero.score = Heroes.score_for(hero, heroes);
       return hero;
     }), "score").reverse().slice(0,5);
   });
@@ -132,10 +136,10 @@ angular.module("evolutionpit", ["data"])
 
 .controller("HeroList", function($scope, Heroes, $q) {
   $scope.loading = true;
-  
+
   Heroes.all().then(function(heroes) {
     $scope.heroes = _.map(heroes,function(hero) {
-      hero.score = Heroes.score_for(hero, heroes); 
+      hero.score = Heroes.score_for(hero, heroes);
       return hero;
     });
 
@@ -200,7 +204,7 @@ angular.module("evolutionpit", ["data"])
               return datum[$scope.graphing];
             })[$scope.graphing];
           }));
-          
+
           var xMin = formatDate.parse(_.min(a[0], function(datum) {
             return formatDate.parse(datum.date);
           }).date);
@@ -220,7 +224,7 @@ angular.module("evolutionpit", ["data"])
 
           var line = d3.svg.line()
                      .x(function(d) { return x(formatDate.parse(d.date)); })
-                     .y(function(d) { return y(d[$scope.graphing]) }); 
+                     .y(function(d) { return y(d[$scope.graphing]) });
 
           var svg = d3.select(".hero-graph").append("svg").attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom).append("g")
@@ -246,7 +250,7 @@ angular.module("evolutionpit", ["data"])
 
           }
 
-        
+
 
          _.each(patches, function(patch) {
              svg.append("line")
@@ -273,7 +277,7 @@ angular.module("evolutionpit", ["data"])
                 });
          })
 
-          
+
 
           _.each(a, function(hero) {
             if(anyFocused && !_.findWhere($scope.heroes, {name: hero[0].name}).focused) return;
@@ -282,7 +286,7 @@ angular.module("evolutionpit", ["data"])
             var isInteresting = !(max[$scope.graphing] - min[$scope.graphing] < 1);
             if($scope.graphing === "win_rate") {
                 isInteresting = !(max[$scope.graphing] - min[$scope.graphing] < 2.75);
-                
+
             }
             if(anyFocused) {
               isInteresting = true;
@@ -291,7 +295,7 @@ angular.module("evolutionpit", ["data"])
               if(index > 0 && index) {
                 var baseline = svg.append('path').datum(hero.slice(index - 1, index + 1)).attr("class", "line " + slugify(hero[0].name) + " " + (isInteresting ? "" : "boring")).attr("d",line)
 
-                baseline.append("svg:title").text(function(d) { 
+                baseline.append("svg:title").text(function(d) {
                   var name = d[0].name;
                   var firstScore = d[0][$scope.graphing].toFixed(1);
                   var secondScore = d[1][$scope.graphing].toFixed(1);
@@ -314,7 +318,7 @@ angular.module("evolutionpit", ["data"])
                     baseline.attr("class", baseline.attr("class").replace(" active", ""));
                   });
                 })
-                .append("svg:title").text(function(d) { 
+                .append("svg:title").text(function(d) {
                   var name = d[0].name;
                   var firstScore = d[0][$scope.graphing].toFixed(1);
                   var secondScore = d[1][$scope.graphing].toFixed(1);
@@ -383,7 +387,7 @@ angular.module("evolutionpit", ["data"])
           var yMax = _.max(_.map(history, function(hero) {
               return _.max([hero.win_rate, hero.popularity, (hero.win_rate * hero.popularity / 100)])
           }));
-          
+
           var xMin = formatDate.parse(_.min(history, function(datum) {
             return formatDate.parse(datum.date);
           }).date);
@@ -392,10 +396,10 @@ angular.module("evolutionpit", ["data"])
           }).date);
             var wrLine = d3.svg.line()
                  .x(function(d) { return x(formatDate.parse(d.date)); })
-                 .y(function(d) { return y(d.win_rate) }); 
+                 .y(function(d) { return y(d.win_rate) });
             var popLine = d3.svg.line()
                  .x(function(d) { return x(formatDate.parse(d.date)); })
-                 .y(function(d) { return y(d.popularity) }); 
+                 .y(function(d) { return y(d.popularity) });
 
 
           x.domain([xMin, xMax]);
@@ -432,7 +436,7 @@ angular.module("evolutionpit", ["data"])
             _.each(history, function(element, index) {
               if(index > 0 && index) {
                 svg.append('path').datum(history.slice(index - 1, index + 1)).attr("class", "line " + slugify(element.name) + " win-rate").attr("d",wrLine)
-                .append("svg:title").text(function(d) { 
+                .append("svg:title").text(function(d) {
                   var firstScore = d[0].win_rate.toFixed(1);
                   var secondScore = d[1].win_rate.toFixed(1);
                   var delta = (secondScore - firstScore).toFixed(1);
@@ -440,7 +444,7 @@ angular.module("evolutionpit", ["data"])
                   return firstScore + "% - " + secondScore + "% (" + cardinality + delta + "%)";
                 })
                 svg.append('path').datum(history.slice(index - 1, index + 1)).attr("class", "line " + slugify(element.name) + " popularity").attr("d",popLine)
-                .append("svg:title").text(function(d) { 
+                .append("svg:title").text(function(d) {
                     var firstScore = d[0].popularity.toFixed(1);
                   var secondScore = d[1].popularity.toFixed(1);
                   var delta = (secondScore - firstScore).toFixed(1);
@@ -481,4 +485,3 @@ angular.module("evolutionpit", ["data"])
         })
     });
 })
-
