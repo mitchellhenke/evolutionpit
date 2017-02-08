@@ -377,3 +377,17 @@ th:last-child {
   margin-top: 150px!important;
 }
 
+.site-footer {
+  text-align: center;
+  padding-top: 20px;
+  color: #CCC;
+  font-size: 0.8em;
+
+  img {
+    max-width: 40px;
+    display: block;
+    margin: auto;
+    margin-bottom: 8px;
+  }
+
+}
