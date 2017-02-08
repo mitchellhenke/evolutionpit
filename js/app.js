@@ -25,7 +25,9 @@ var qs = (function(a) {
 var patches = [
     {date: "2016-03-16 00:00:00 +0000", patch: "16.5", notes: "http://us.battle.net/heroes/en/blog/20057110"},
     {date: "2016-03-29 00:00:00 +0000", patch: "17.0", notes: "http://us.battle.net/heroes/en/blog/20063493"},
-    {date: "2016-04-12 00:00:00 +0000", patch: "17.1", notes: "http://us.battle.net/heroes/en/forum/topic/20742939675#1"}
+    {date: "2016-04-12 00:00:00 +0000", patch: "17.1", notes: "http://us.battle.net/heroes/en/forum/topic/20742939675#1"},
+    {date: "2017-01-27 00:00:00 +0000", patch: "23.1", notes: "http://us.battle.net/heroes/en/blog/20506310"},
+    {date: "2017-02-08 00:00:00 +0000", patch: "23.2", notes: "http://us.battle.net/heroes/en/blog/20532382/heroes-of-the-storm-hotfix-patch-notes-feb-8-2017-2-8-2017"}
 ]
 angular.module("data", [])
 .service("Heroes", function($http) {
